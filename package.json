@@ -1,0 +1,15 @@
+{
+  "name": "openai",
+  "version": "1.0.0",
+  "description": "this is openai app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yulan Huang",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "openai": "^4.32.1"
+  }
+}
