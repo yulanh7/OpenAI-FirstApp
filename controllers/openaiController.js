@@ -1,7 +1,8 @@
 const OpenAI = require("openai");
 const openai = new OpenAI({ apiKey: process.env.OPEN_AI_KEY });
 
-const generateMeta = async (title) => {
+const generateMeta = async (req, res) => {
+  const { title } = req.body;
   const description = await openai.chat.completions.create({
     messages: [
       {
@@ -12,10 +13,7 @@ const generateMeta = async (title) => {
     max_tokens: 100,
     model: "gpt-3.5-turbo",
   });
-
-
-  console.log(description.choices[0].message)
-
+  // console.log(description.choices[0].message)
 
   const tags = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
@@ -26,21 +24,27 @@ const generateMeta = async (title) => {
     max_tokens: 100
   })
 
-  console.log(tags.choices[0].message)
+  // console.log(tags.choices[0].message)
+
+  res.status(200).json({
+    description: description.choices[0].message,
+    tags: tags.choices[0].message
+  })
 
 }
 
 module.exports = { generateMeta }
 
-const generateImage = async (desc) => {
+const generateImage = async (req, res) => {
   const image = await openai.images.generate({
-    prompt: desc,
+    prompt: req.body.prompt,
     size: "512x512",
     n: 1,
   });
-
-
   console.log(image.data)
+  res.status(200).json({
+    url: image.data[0].url
+  })
 }
 
 module.exports = { generateImage }
