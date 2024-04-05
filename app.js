@@ -1,10 +1,9 @@
-const express = require('express');
+const express = require('express')
 const { generateMeta, generateImage } = require('./controllers/openaiController')
 
 // app setup
-
-const app = express();
-app.listen(4000, () => console.log('listening for requests on port 4000'))
+const app = express()
+app.listen(4000, () => console.log('listening to requests on port 4000'))
 
 // middleware
 app.use(express.json())
