@@ -1,0 +1,15 @@
+Post http://localhost:4000/openai/meta
+Content-Type: application/json
+
+{
+  "title": "this is wordpress"
+}
+
+###
+
+Post http://localhost:4000/openai/image
+Content-Type: application/json
+
+{
+  "prompt": "this is a monkey"
+}
